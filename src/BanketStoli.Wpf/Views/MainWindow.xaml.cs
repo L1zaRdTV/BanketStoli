@@ -2,6 +2,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.IO;
+using System.Windows.Media.Imaging;
 using BanketStoli.Wpf.Models;
 using BanketStoli.Wpf.Services;
 
@@ -48,7 +50,47 @@ namespace BanketStoli.Wpf.Views
 
         private BanquetRoom SelectedRoom => RoomsGrid.SelectedItem as BanquetRoom;
         private void Filters_Changed(object sender, EventArgs e) { if (IsLoaded) LoadRooms(); }
-        private void RoomsGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) { if (SelectedRoom != null) new RoomDetailsWindow(SelectedRoom).ShowDialog(); }
+        private void RoomsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) { ShowRoomDetails(SelectedRoom); }
+        private void RoomsGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) { if (SelectedRoom != null) ShowRoomDetails(SelectedRoom); }
+
+        private void ShowRoomDetails(BanquetRoom room)
+        {
+            if (room == null)
+            {
+                DetailsHintTextBlock.Visibility = Visibility.Visible;
+                DetailsPanel.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            DetailsHintTextBlock.Visibility = Visibility.Collapsed;
+            DetailsPanel.Visibility = Visibility.Visible;
+            DetailsNameTextBlock.Text = room.Name;
+            DetailsStyleTextBlock.Text = "Стиль оформления: " + room.StyleName;
+            DetailsTableCountTextBlock.Text = "Количество столов: " + room.TableCount;
+            DetailsPriceTextBlock.Text = $"Стоимость аренды: {room.RentPricePerHour:N2} руб./час";
+            DetailsDescriptionTextBlock.Text = room.Description;
+            DetailsImage.Source = TryLoadImage(room.ImagePath);
+            DetailsImageTextBlock.Text = DetailsImage.Source == null ? "Фото не указано" : string.Empty;
+        }
+
+        private static BitmapImage TryLoadImage(string imagePath)
+        {
+            if (string.IsNullOrWhiteSpace(imagePath)) return null;
+            try
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = Uri.TryCreate(imagePath, UriKind.Absolute, out var absoluteUri) ? absoluteUri : new Uri(Path.GetFullPath(imagePath), UriKind.Absolute);
+                image.EndInit();
+                image.Freeze();
+                return image;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         private void AddButton_Click(object sender, RoutedEventArgs e) { if (new RoomEditWindow(null).ShowDialog() == true) LoadRooms(); }
         private void EditButton_Click(object sender, RoutedEventArgs e) { if (SelectedRoom == null) { MessageBox.Show("Выберите комнату для редактирования.", "Действие недоступно", MessageBoxButton.OK, MessageBoxImage.Warning); return; } if (new RoomEditWindow(SelectedRoom).ShowDialog() == true) LoadRooms(); }
         private void DeleteButton_Click(object sender, RoutedEventArgs e) { if (SelectedRoom == null) { MessageBox.Show("Выберите комнату для удаления.", "Действие недоступно", MessageBoxButton.OK, MessageBoxImage.Warning); return; } if (MessageBox.Show("Удалить выбранную комнату?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes) { roomService.DeleteRoom(SelectedRoom.Id); LoadRooms(); } }

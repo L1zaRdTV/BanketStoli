@@ -1,13 +1,14 @@
-<Window x:Class="BanketStoli.Wpf.Views.RoomEditWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="БанкетСтоли — карточка комнаты" MinWidth="540" MinHeight="560" Width="620" Height="620" WindowStartupLocation="CenterOwner">
-  <Grid Margin="18"><Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-    <StackPanel>
-      <TextBlock Text="Название"/><TextBox x:Name="NameTextBox" MaxLength="80"/>
-      <TextBlock Text="Стиль оформления"/><ComboBox x:Name="StyleComboBox" DisplayMemberPath="Name" SelectedValuePath="Id"/>
-      <TextBlock Text="Количество столов"/><TextBox x:Name="TableCountTextBox"/>
-      <TextBlock Text="Стоимость аренды, руб./час"/><TextBox x:Name="PriceTextBox"/>
-      <TextBlock Text="Изображение"/><TextBox x:Name="ImagePathTextBox" MaxLength="260"/>
-      <TextBlock Text="Описание"/><TextBox x:Name="DescriptionTextBox" MaxLength="1000" Height="130" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
-    </StackPanel>
-    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"><Button Content="Сохранить" Click="SaveButton_Click"/><Button Content="Отмена" Click="CancelButton_Click"/></StackPanel>
+<Window x:Class="BanketStoli.Wpf.Views.RoomEditWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="БанкетСтоли — карточка комнаты" MinWidth="600" MinHeight="640" Width="680" Height="700" WindowStartupLocation="CenterOwner">
+  <Grid Margin="22"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+    <StackPanel Margin="4,0,4,14"><TextBlock Text="Карточка банкетной комнаты" FontSize="24" FontWeight="SemiBold" Foreground="#FF3B2A20"/><TextBlock Text="Заполните данные комнаты. Поле пути к изображению можно оставить пустым и добавить фото позже." TextWrapping="Wrap" Foreground="#FF7A6656" Margin="0,6,0,0"/></StackPanel>
+    <Border Grid.Row="1" Background="White" CornerRadius="16" Padding="18"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+      <TextBlock Text="Название" VerticalAlignment="Center"/><TextBox Grid.Column="1" x:Name="NameTextBox" MaxLength="80"/>
+      <TextBlock Grid.Row="1" Text="Стиль оформления" VerticalAlignment="Center"/><ComboBox Grid.Row="1" Grid.Column="1" x:Name="StyleComboBox" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+      <TextBlock Grid.Row="2" Text="Количество столов" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" x:Name="TableCountTextBox"/>
+      <TextBlock Grid.Row="3" Text="Стоимость, руб./час" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="1" x:Name="PriceTextBox"/>
+      <TextBlock Grid.Row="4" Text="Путь к изображению" VerticalAlignment="Center"/><TextBox Grid.Row="4" Grid.Column="1" x:Name="ImagePathTextBox" MaxLength="260" ToolTip="Оставьте пустым, если фото пока нет"/>
+      <TextBlock Grid.Row="5" Text="Описание" VerticalAlignment="Top" Margin="0,12,0,0"/><TextBox Grid.Row="5" Grid.Column="1" x:Name="DescriptionTextBox" MaxLength="1000" MinHeight="160" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+    </Grid></Border>
+    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0"><Button Content="Сохранить" Click="SaveButton_Click"/><Button Content="Отмена" Click="CancelButton_Click"/></StackPanel>
   </Grid>
 </Window>

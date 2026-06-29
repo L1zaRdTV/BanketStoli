@@ -1,7 +1,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 
-namespace BanketStoli.Wpf.Data
+namespace BanketStoli.Data
 {
     public static class Database
     {

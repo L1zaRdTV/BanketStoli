@@ -1,8 +1,8 @@
 using System;
 using System.Windows;
-using BanketStoli.Wpf.Services;
+using BanketStoli.Services;
 
-namespace BanketStoli.Wpf.Views
+namespace BanketStoli.Views
 {
     public partial class LoginWindow : Window
     {

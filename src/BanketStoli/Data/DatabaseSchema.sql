@@ -1,0 +1,22 @@
+CREATE DATABASE BanketStoliDb;
+GO
+USE BanketStoliDb;
+GO
+CREATE TABLE UserRoles (Id INT IDENTITY PRIMARY KEY, Name NVARCHAR(30) NOT NULL UNIQUE);
+CREATE TABLE Users (Id INT IDENTITY PRIMARY KEY, FullName NVARCHAR(120) NOT NULL, Phone NVARCHAR(30) NOT NULL, Email NVARCHAR(120) NOT NULL UNIQUE, Login NVARCHAR(50) NOT NULL UNIQUE, Password NVARCHAR(50) NOT NULL, RoleId INT NOT NULL REFERENCES UserRoles(Id));
+CREATE TABLE DecorationStyles (Id INT IDENTITY PRIMARY KEY, Name NVARCHAR(80) NOT NULL UNIQUE);
+CREATE TABLE BanquetRooms (Id INT IDENTITY PRIMARY KEY, Name NVARCHAR(80) NOT NULL, StyleId INT NOT NULL REFERENCES DecorationStyles(Id), TableCount INT NOT NULL CHECK (TableCount > 0), RentPricePerHour DECIMAL(10,2) NOT NULL CHECK (RentPricePerHour >= 0), ImagePath NVARCHAR(260) NULL, Description NVARCHAR(1000) NOT NULL);
+GO
+INSERT INTO UserRoles (Name) VALUES (N'Клиент'), (N'Менеджер');
+INSERT INTO DecorationStyles (Name) VALUES (N'японский стиль'), (N'европейский стиль'), (N'мексиканский стиль');
+INSERT INTO Users (FullName, Phone, Email, Login, Password, RoleId) VALUES
+(N'Иванов Максим Иванович', N'8911-132-15-15', N'ivan@ya.ru', N'client1', N'client1', 1),
+(N'Гулькина Ольга Петровна', N'8923-526-86-97', N'petrofon@mail.ru', N'client2', N'client2', 1),
+(N'Васильев Иван Олегович', N'523-12-23', N'romashka@rambler.ru', N'client3', N'client3', 1),
+(N'Кирилова Марина Артемовна', N'8923-987-65-32', N'marina@gmail.com', N'client4', N'client4', 1),
+(N'Смирнов Игорь Андреевич', N'8921-963-32-65', N'smirnov@ya.ru', N'manager1', N'manager1', 2),
+(N'Петрова Олеся Юрьевна', N'8911-125-45-65', N'olesya@mail.ru', N'manager2', N'manager2', 2);
+INSERT INTO BanquetRooms (Name, StyleId, TableCount, RentPricePerHour, ImagePath, Description) VALUES
+(N'Красный зал', 1, 20, 500, N'Assets/ProductImages/redroom.jpg', N'Уютный зал в японском стиле с лаконичным интерьером и спокойной атмосферой, идеально подходящий для семейных праздников и деловых встреч.'),
+(N'Зелёный зал', 2, 32, 1000, N'Assets/ProductImages/greenroom.jpg', N'Просторный зал в классическом европейском стиле, отлично подходящий для свадеб, корпоративных мероприятий и крупных торжеств.'),
+(N'Жёлтый зал', 3, 20, 750, N'Assets/ProductImages/yellowroom.jpg', N'Яркий зал в мексиканском стиле с тёплой атмосферой и оригинальным оформлением, идеально подходящий для весёлых праздников и тематических мероприятий.');

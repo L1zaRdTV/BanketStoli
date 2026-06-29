@@ -3,11 +3,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <UseWPF>true</UseWPF>
-    <RootNamespace>BanketStoli.Wpf</RootNamespace>
-    <AssemblyName>BanketStoli.Wpf</AssemblyName>
+    <RootNamespace>BanketStoli</RootNamespace>
+    <AssemblyName>BanketStoli</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="Data\DatabaseSchema.sql" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\ProductImages\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />

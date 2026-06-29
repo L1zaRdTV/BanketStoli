@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+
 namespace BanketStoli.Models
 {
     public class BanquetRoom
@@ -13,12 +16,19 @@ namespace BanketStoli.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(Image) || string.IsNullOrWhiteSpace(Image))
+                if (string.IsNullOrWhiteSpace(Image))
                 {
-                    return @"/Images/Zagluhca.png";
+                    return null;
                 }
 
-                return @"/Images/" + Image;
+                var photoPath = Image.Trim();
+                if (Path.IsPathRooted(photoPath))
+                {
+                    return File.Exists(photoPath) ? photoPath : null;
+                }
+
+                var applicationImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", photoPath);
+                return File.Exists(applicationImagePath) ? applicationImagePath : null;
             }
         }
         public string Description { get; set; }

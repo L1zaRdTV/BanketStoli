@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
 using System.Windows;
-using BanketStoli.Wpf.Models;
-using BanketStoli.Wpf.Services;
+using BanketStoli.Models;
+using BanketStoli.Services;
 
-namespace BanketStoli.Wpf.Views
+namespace BanketStoli.Views
 {
     public partial class RoomEditWindow : Window
     {

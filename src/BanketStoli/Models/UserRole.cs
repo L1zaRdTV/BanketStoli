@@ -1,4 +1,4 @@
-namespace BanketStoli.Wpf.Models
+namespace BanketStoli.Models
 {
     public enum UserRole
     {

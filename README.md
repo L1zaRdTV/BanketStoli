@@ -5,9 +5,9 @@
 ## Запуск
 
 1. Откройте `BanketStoli.sln` в Visual Studio.
-2. Выполните скрипт `src/BanketStoli.Wpf/Data/DatabaseSchema.sql` в SQL Server LocalDB или SQL Server.
-3. При необходимости измените строку подключения `BanketStoliDb` в `src/BanketStoli.Wpf/App.config`.
-4. Запустите проект `BanketStoli.Wpf`.
+2. Выполните скрипт `src/BanketStoli/Data/DatabaseSchema.sql` в SQL Server LocalDB или SQL Server.
+3. При необходимости измените строку подключения `BanketStoliDb` в `src/BanketStoli/App.config`.
+4. Запустите проект `BanketStoli`.
 
 ## Тестовые учетные записи
 

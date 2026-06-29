@@ -1,8 +1,8 @@
 using System.Data.SqlClient;
-using BanketStoli.Wpf.Data;
-using BanketStoli.Wpf.Models;
+using BanketStoli.Data;
+using BanketStoli.Models;
 
-namespace BanketStoli.Wpf.Services
+namespace BanketStoli.Services
 {
     public class UserService
     {

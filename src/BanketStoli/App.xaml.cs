@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace BanketStoli.Wpf
+namespace BanketStoli
 {
     public partial class App : Application
     {

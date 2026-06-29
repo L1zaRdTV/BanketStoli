@@ -9,6 +9,8 @@ namespace BanketStoli.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public int RoleId { get; set; }
+        public int? ClientId { get; set; }
+        public int? ManagerId { get; set; }
         public UserRole Role { get; set; }
     }
 }

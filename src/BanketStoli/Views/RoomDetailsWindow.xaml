@@ -1,12 +1,12 @@
 <Window x:Class="BanketStoli.Views.RoomDetailsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="БанкетСтоли — подробности комнаты" MinWidth="560" MinHeight="470" Width="660" Height="540" WindowStartupLocation="CenterOwner">
   <ScrollViewer Margin="20">
-    <Border Background="White" CornerRadius="16" Padding="18">
+    <Border Background="White" Padding="18">
       <StackPanel>
         <TextBlock x:Name="NameTextBlock" FontSize="26" FontWeight="SemiBold" Foreground="#FF3B2A20"/>
         <TextBlock x:Name="StyleTextBlock" Margin="0,12,0,0"/>
         <TextBlock x:Name="TableCountTextBlock" Margin="0,4,0,0"/>
         <TextBlock x:Name="PriceTextBlock" Margin="0,4,0,0"/>
-        <Border CornerRadius="14" Height="200" Margin="0,16" Background="#FFF0E8DE">
+        <Border Height="200" Margin="0,16" Background="#FFF0E8DE">
           <Grid>
             <Image x:Name="RoomImage" Stretch="UniformToFill"/>
             <TextBlock x:Name="ImageTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="#FF9A7B63"/>

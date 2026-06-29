@@ -14,13 +14,13 @@ namespace BanketStoli.Views
         public RoomEditWindow(BanquetRoom sourceRoom)
         {
             InitializeComponent();
-            room = sourceRoom == null ? new BanquetRoom() : new BanquetRoom { Id = sourceRoom.Id, Name = sourceRoom.Name, StyleId = sourceRoom.StyleId, TableCount = sourceRoom.TableCount, RentPricePerHour = sourceRoom.RentPricePerHour, ImagePath = sourceRoom.ImagePath, Description = sourceRoom.Description };
+            room = sourceRoom == null ? new BanquetRoom() : new BanquetRoom { Id = sourceRoom.Id, Name = sourceRoom.Name, StyleId = sourceRoom.StyleId, TableCount = sourceRoom.TableCount, RentPricePerHour = sourceRoom.RentPricePerHour, Image = sourceRoom.Image, Description = sourceRoom.Description };
             StyleComboBox.ItemsSource = roomService.GetStyles();
             NameTextBox.Text = room.Name;
             StyleComboBox.SelectedValue = room.StyleId;
             TableCountTextBox.Text = room.TableCount == 0 ? string.Empty : room.TableCount.ToString();
             PriceTextBox.Text = room.RentPricePerHour == 0 ? string.Empty : room.RentPricePerHour.ToString(CultureInfo.CurrentCulture);
-            ImagePathTextBox.Text = room.ImagePath;
+            ImageTextBox.Text = room.Image;
             DescriptionTextBox.Text = room.Description;
         }
 
@@ -31,7 +31,7 @@ namespace BanketStoli.Views
             room.StyleId = (int)StyleComboBox.SelectedValue;
             room.TableCount = tableCount;
             room.RentPricePerHour = price;
-            room.ImagePath = ImagePathTextBox.Text.Trim();
+            room.Image = ImageTextBox.Text.Trim();
             room.Description = DescriptionTextBox.Text.Trim();
             try { roomService.SaveRoom(room); DialogResult = true; }
             catch (Exception ex) { MessageBox.Show("Не удалось сохранить комнату. " + ex.Message, "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error); }

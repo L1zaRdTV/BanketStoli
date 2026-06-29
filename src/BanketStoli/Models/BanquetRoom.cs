@@ -8,7 +8,19 @@ namespace BanketStoli.Models
         public string StyleName { get; set; }
         public int TableCount { get; set; }
         public decimal RentPricePerHour { get; set; }
-        public string ImagePath { get; set; }
+        public string Image { get; set; }
+        public string CurrentPhoto
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Image) || string.IsNullOrWhiteSpace(Image))
+                {
+                    return @"/Images/Zagluhca.png";
+                }
+
+                return @"/Images/" + Image;
+            }
+        }
         public string Description { get; set; }
     }
 }

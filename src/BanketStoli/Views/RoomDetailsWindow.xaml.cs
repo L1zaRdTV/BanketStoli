@@ -1,6 +1,6 @@
 using System.Windows;
+using System.Windows.Media;
 using BanketStoli.Models;
-using BanketStoli.Utilities;
 
 namespace BanketStoli.Views
 {
@@ -13,8 +13,8 @@ namespace BanketStoli.Views
             StyleTextBlock.Text = "Стиль оформления: " + room.StyleName;
             TableCountTextBlock.Text = "Количество столов: " + room.TableCount;
             PriceTextBlock.Text = $"Стоимость аренды: {room.RentPricePerHour:N2} руб./час";
-            RoomImage.Source = ImageLoader.Load(room.ImagePath);
-            ImageTextBlock.Text = RoomImage.Source == null ? "Фото не указано" : string.Empty;
+            RoomImage.Source = new ImageSourceConverter().ConvertFromString(room.CurrentPhoto) as ImageSource;
+            ImageTextBlock.Text = string.Empty;
             DescriptionTextBlock.Text = room.Description;
         }
 

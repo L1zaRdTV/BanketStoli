@@ -8,9 +8,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="Data\DatabaseSchema.sql" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Assets\ProductImages\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Images\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>
